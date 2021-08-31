@@ -1,22 +1,30 @@
 package com.fanplus.fanplustalk.ui.login
 
-import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import com.fanplus.fanplustalk.ui.channel.list.ChannelListActivity
 import com.fanplus.fanplustalk.databinding.ActivityLoginBinding
 
 import com.fanplus.fanplustalk.R
+import io.talkplus.util.CommonUtil
+
 
 class LoginActivity : AppCompatActivity() {
+    companion object {
+        val KEY_USER_ID = "KeyUserId"
+        val KEY_USER_NAME = "KeyUserName"
+    }
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
@@ -27,8 +35,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val username = binding.username
-        val password = binding.password
+        val userIdx = binding.idx
+        val nickname = binding.nickname
         val login = binding.login
         val loading = binding.loading
 
@@ -40,13 +48,6 @@ class LoginActivity : AppCompatActivity() {
 
             // disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
-
-            if (loginState.usernameError != null) {
-                username.error = getString(loginState.usernameError)
-            }
-            if (loginState.passwordError != null) {
-                password.error = getString(loginState.passwordError)
-            }
         })
 
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {
@@ -59,24 +60,34 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
             }
-            setResult(Activity.RESULT_OK)
 
-            //Complete and destroy login activity once successful
-            finish()
+
+            CommonUtil.setProperty(this, KEY_USER_ID, userIdx.text.toString())
+            CommonUtil.setProperty(this, KEY_USER_NAME, nickname.text.toString())
+            startActivity(Intent(this, ChannelListActivity::class.java))
         })
 
-        username.afterTextChanged {
+        val userId = CommonUtil.getProperty(this, KEY_USER_ID, "")
+        val userName = CommonUtil.getProperty(this, KEY_USER_NAME, "")
+        userIdx.setText(userId)
+        nickname.setText(userName)
+
+        if (!TextUtils.isEmpty(userId) && !TextUtils.isEmpty(userName)) {
+            loginViewModel.login(userId, userName)
+        }
+
+        userIdx.afterTextChanged {
             loginViewModel.loginDataChanged(
-                username.text.toString(),
-                password.text.toString()
+                userIdx.text.toString(),
+                nickname.text.toString()
             )
         }
 
-        password.apply {
+        nickname.apply {
             afterTextChanged {
                 loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
+                    userIdx.text.toString(),
+                    nickname.text.toString()
                 )
             }
 
@@ -84,8 +95,8 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
-                            username.text.toString(),
-                            password.text.toString()
+                            userIdx.text.toString(),
+                            nickname.text.toString()
                         )
                 }
                 false
@@ -93,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                loginViewModel.login(userIdx.text.toString(), nickname.text.toString())
             }
         }
     }

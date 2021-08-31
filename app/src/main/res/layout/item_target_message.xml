@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/talk_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="#aab3bc"
+        android:textSize="10sp"
+        tools:text="2021년 8월 25일"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@drawable/rectangle_full_gray_4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/user_profile"
+        tools:ignore="SmallSp" />
+
+    <ImageView
+        android:id="@+id/user_profile"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/user_default_profile_image"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/talk_date"/>
+
+    <TextView
+        android:id="@+id/talk_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="오후 4:00"
+        android:textSize="10sp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@+id/talk_contents"
+        app:layout_constraintBottom_toBottomOf="@+id/talk_contents"
+        tools:ignore="SmallSp" />
+
+
+    <FrameLayout
+        android:id="@+id/talk_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
+
+        <ImageView
+            android:id="@+id/talk_file"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/talk_date"/>
+
+        <TextView
+            android:id="@+id/talk_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="200dp"
+            android:background="@drawable/target_message_background"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            android:paddingTop="10dp"
+            android:layout_gravity="bottom"
+            android:paddingBottom="10dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:textColor="#343a40"
+            tools:text="이것은 상대방의 말풍선입니다 이것은 상대방의 말풍선입니다"/>
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="2dp"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/user_profile"
+        app:layout_constraintTop_toTopOf="@id/user_profile"
+        app:layout_constraintBottom_toTopOf="@+id/talk_contents"
+        tools:text="슬깅"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

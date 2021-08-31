@@ -1,6 +1,8 @@
-package com.fanplus.fanplustalk.data
+package com.fanplus.fanplustalk.data.login
 
 import com.fanplus.fanplustalk.data.model.LoggedInUser
+import io.talkplus.TalkPlus
+import io.talkplus.entity.user.TPUser
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -27,15 +29,12 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        // handle login
-        val result = dataSource.login(username, password)
-
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
-        }
-
-        return result
+    fun login(
+        username: String,
+        password: String,
+        callbackListener: TalkPlus.CallbackListener<TPUser?>
+    ) {
+        return dataSource.login(username, password, callbackListener)
     }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {

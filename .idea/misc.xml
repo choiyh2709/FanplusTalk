@@ -3,8 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/channel_bottom_background.xml" value="0.7876923076923077" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.7876923076923077" />
+        <entry key="app/src/main/res/drawable/my_message_background.xml" value="0.7876923076923077" />
+        <entry key="app/src/main/res/drawable/oval_full_grapefruit.xml" value="0.6838541666666667" />
+        <entry key="app/src/main/res/drawable/rectangle_full_ffb2b2_4dp.xml" value="0.7876923076923077" />
+        <entry key="app/src/main/res/drawable/rectangle_full_grapefruit_16dp.xml" value="0.5458333333333333" />
+        <entry key="app/src/main/res/drawable/rectangle_full_grapefruit_9dp.xml" value="0.7876923076923077" />
+        <entry key="app/src/main/res/drawable/rectangle_full_gray_4dp.xml" value="0.5458333333333333" />
+        <entry key="app/src/main/res/drawable/rectangle_full_gray_8dp.xml" value="0.7876923076923077" />
+        <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.397265625" />
+        <entry key="app/src/main/res/layout/activity_channel_detail.xml" value="0.5145833333333333" />
+        <entry key="app/src/main/res/layout/activity_channel_list.xml" value="0.5435565154787617" />
+        <entry key="app/src/main/res/layout/activity_file_detail.xml" value="0.7838541666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.48489583333333336" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.7838541666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_channel.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/item_my_message.xml" value="0.7838541666666666" />
+        <entry key="app/src/main/res/layout/item_target_message.xml" value="0.5296875" />
+        <entry key="app/src/main/res/layout/item_user_message.xml" value="0.5296875" />
       </map>
     </option>
   </component>
